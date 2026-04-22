@@ -22,12 +22,12 @@ const library = [
   },
   {
     id: 'sometimes-live',
-    title: 'Sometimes (4K)',
-    artist: 'Britney Spears',
-    album: 'Baby One More Time',
-    genre: 'Pop',
-    accent: '#ff92a4',
-    videoId: 'p-Cb7w-9QkU',
+    title: 'Ligaya',
+    artist: 'Eraserheads',
+    album: 'Ultraelectromagneticpop!',
+    genre: 'OPM',
+    accent: '#f4a65d',
+    videoId: '0Xr2mFqzJ9Y',
   },
 ]
 
