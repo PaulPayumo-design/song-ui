@@ -1,4 +1,37 @@
+:root {
+	color-scheme: dark;
+	font-family: 'Segoe UI', 'Trebuchet MS', Arial, sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
+	color: #f3f1ed;
+	background: #0b0b0b;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+html,
+body,
+#root {
+	min-height: 100%;
+}
+
+body {
+	margin: 0;
+	min-width: 320px;
+	background: #0b0b0b;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+a {
+	color: inherit;
+}
+
+button,
+input {
+	font: inherit;
+}
