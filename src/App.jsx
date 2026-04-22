@@ -27,7 +27,7 @@ const fallbackLibrary = [
     album: 'Ultraelectromagneticpop!',
     genre: 'OPM',
     accent: '#f4a65d',
-    videoId: 'lPG6bKqcvP8',
+    videoId: 'XibB-5BPdrY',
   },
 ]
 
