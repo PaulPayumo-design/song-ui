@@ -9,8 +9,7 @@ const library = [
     album: 'Achtung Baby',
     genre: 'Rock',
     accent: '#ff281f',
-    poster:
-      'linear-gradient(135deg, #0b0b0c 0%, #171214 26%, #24150f 50%, #0a0a0b 100%)',
+    videoId: 'ftjEcrrf7r0',
   },
   {
     id: 'sometimes',
@@ -19,28 +18,16 @@ const library = [
     album: 'Baby One More Time',
     genre: 'Pop',
     accent: '#ff5c74',
-    poster:
-      'linear-gradient(135deg, #f7d6cb 0%, #e9a58f 25%, #7f5a54 60%, #1d1111 100%)',
+    videoId: 't0bPrt69rag',
   },
   {
-    id: 'yellow',
-    title: 'Yellow',
-    artist: 'Coldplay',
-    album: 'Parachutes',
-    genre: 'Alternative',
-    accent: '#ffcc4d',
-    poster:
-      'linear-gradient(135deg, #f8edcf 0%, #d3af56 26%, #604d1f 60%, #141010 100%)',
-  },
-  {
-    id: 'halo',
-    title: 'Halo',
-    artist: 'Beyonce',
-    album: 'I Am... Sasha Fierce',
-    genre: 'R&B',
-    accent: '#9ecbff',
-    poster:
-      'linear-gradient(135deg, #e8f0ff 0%, #89a5d8 28%, #2c2c3e 60%, #09090b 100%)',
+    id: 'sometimes-live',
+    title: 'Sometimes (4K)',
+    artist: 'Britney Spears',
+    album: 'Baby One More Time',
+    genre: 'Pop',
+    accent: '#ff92a4',
+    videoId: 'p-Cb7w-9QkU',
   },
 ]
 
@@ -67,6 +54,10 @@ function App() {
     filteredTracks.find((track) => track.id === activeId) ?? filteredTracks[0] ?? library[0]
 
   const recommendedTracks = filteredTracks.filter((track) => track.id !== activeTrack.id)
+
+  const activeVideoUrl = `https://www.youtube.com/embed/${activeTrack.videoId}?autoplay=0&rel=0&modestbranding=1`
+
+  const getThumbnailUrl = (videoId) => `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
 
   return (
     <div className="app-shell" style={{ '--accent': activeTrack.accent }}>
@@ -134,34 +125,18 @@ function App() {
               </a>
             </div>
 
-            <button
+            <div
               className="player-frame"
-              type="button"
-              onClick={() => {
-                window.open(
-                  `https://www.youtube.com/results?search_query=${encodeURIComponent(
-                    `${activeTrack.artist} ${activeTrack.title}`,
-                  )}`,
-                  '_blank',
-                  'noreferrer',
-                )
-              }}
-              style={{ '--poster': activeTrack.poster }}
-              aria-label={`Open ${activeTrack.title} by ${activeTrack.artist}`}
+              aria-label={`Embedded video for ${activeTrack.title} by ${activeTrack.artist}`}
             >
-              <div className="poster-overlay" />
-              <div className="poster-sheen" />
-              <div className="poster-label">
-                <span className="mini-brand">vevo</span>
-                <span className="video-title">
-                  {activeTrack.artist} - {activeTrack.title}
-                </span>
-                <span className="watch-tag">Watch on YouTube</span>
-              </div>
-              <div className="play-button" aria-hidden="true">
-                <span />
-              </div>
-            </button>
+              <iframe
+                className="video-embed"
+                src={activeVideoUrl}
+                title={`${activeTrack.artist} - ${activeTrack.title}`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
 
             <div className="track-details">
               <h2>{activeTrack.title}</h2>
@@ -182,9 +157,13 @@ function App() {
                   type="button"
                   onClick={() => setActiveId(track.id)}
                 >
-                  <div className="recommend-art" style={{ '--poster': track.poster }}>
-                    <div className="poster-overlay" />
-                    <div className="poster-sheen" />
+                  <div className="recommend-art">
+                    <img
+                      className="recommend-thumb"
+                      src={getThumbnailUrl(track.videoId)}
+                      alt={`${track.title} thumbnail`}
+                      loading="lazy"
+                    />
                     <span className="recommend-logo">vevo</span>
                   </div>
 
